@@ -1,0 +1,286 @@
+<!doctype html>
+<html>
+<head>
+<title>Boggle Demo</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+<img class="center" style="width:30%" src="images/title.png"/>
+
+<br/>
+<div id="timer" class="center3">
+<button style="display: inline-block;
+  vertical-align: middle;
+  margin: 10px 0;" class="button button1" onclick="createTable()" id="startTimer">New Game</button>
+<button style="display: inline-block;
+  vertical-align: middle;
+  margin: 10px 0;" class="button button1" id="resetTimer">Reset</button>
+<button style="display: inline-block;
+  vertical-align: middle;
+  margin: 10px 0;" class="button button1" onclick="toggleRules()" id="rulesBtn">Show Rules</button>
+<p style="font-size:30px;  display: inline-block;
+  vertical-align: middle;
+  margin: 10px 0;" class="timeout"> 3:00 </p>
+</div>
+<br/>
+<div id="rules" class="rules aside">
+
+<h3>How to Play:</h3>
+<p>Words should be created by using adjoining letters - the letters must touch each other - and must be able to connect to each other in the proper sequence to spell the word correctly. The letters may join in any direction - horizontally, vertically, or diagonally. This means that the letters can be above or below, side by side, or touching corners. Words can be spelled in any direction, including backwards.</p>
+
+<p>You may not use a letter cube multiple times in a single word. Any word found in a standard English dictionary is permissible, so long as it is not a proper noun (i.e.. you cannot use names of people or places).</p>
+
+<p>When the timer runs out, players must stop writing words. Players take turns reading the words they have made, and all players cross matching words off their list. Only words that no other player created are scored.</p>
+
+<p>Scoring and Winning</p>
+
+<table class="center2">
+<tr><th>No. of Letters | Points per Word</th></tr>
+<tr><td>3       |        1</td></tr>
+<tr><td>4       |        1</td></tr>
+<tr><td>5       |        2</td></tr>
+<tr><td>6       |        3</td></tr>
+<tr><td>7       |        5</td></tr>
+<tr><td>8+      |       11</td></tr>
+</table>
+<p>Boggle&#169; is a registered trademark of Parker Brothers, a division of Hasbro, Inc. The Boggle logo and game are not owned by me.</p>
+</div>
+
+<br/>
+<div id="game">
+<table class="center2" id="tbl"><tbody id="parent">
+  <tr>
+    <td><img src="image.jpg" width="100" /></td>
+    <td><img src="image.jpg" width="100" /></td>
+    <td><img src="image.jpg" width="100" /></td>
+    <td><img src="image.jpg" width="100" /></td>
+  </tr>
+   <tr>
+    <td><img src="image.jpg" width="100" /></td>
+    <td><img src="image.jpg" width="100" /></td>
+    <td><img src="image.jpg" width="100" /></td>
+    <td><img src="image.jpg" width="100" /></td>
+  </tr>
+   <tr>
+    <td><img src="image.jpg" width="100" /></td>
+    <td><img src="image.jpg" width="100" /></td>
+    <td><img src="image.jpg" width="100" /></td>
+    <td><img src="image.jpg" width="100" /></td>
+  </tr>
+   <tr>
+    <td><img src="image.jpg" width="100" /></td>
+    <td><img src="image.jpg" width="100" /></td>
+    <td><img src="image.jpg" width="100" /></td>
+    <td><img src="image.jpg" width="100" /></td>
+  </tr>
+  </tbody>
+</table>
+</div>
+<br/>
+<br/>
+<div>
+<video style="display:none" width="400" controls preload>
+      <source src="http://intersectingart.xyz/wp-content/uploads/2018/08/2018-08-01-17-48-30.mp4?_=1" type="video/mp4">
+      Your browser does not support HTML5 video.
+    </video>
+<div>
+
+<script>
+
+
+
+
+//onload
+window.onload = function() {
+  document.getElementById('game').style.display = 'none';
+  document.getElementById('rules').style.display = 'none';
+};
+
+//rules
+
+function toggleRules() {
+	var x = document.getElementById("rules");
+		if (x.style.display == 'none') {
+			document.getElementById('rules').style.display = 'block';
+			document.getElementById('rulesBtn').innerHTML="Hide Rules"
+			
+			
+		}
+   		else {
+	   		document.getElementById('rules').style.display = 'none';	
+			document.getElementById('rulesBtn').innerHTML="Show Rules"
+		}
+};
+
+//Timer Code
+
+var interval;
+
+function countdown() {
+  clearInterval(interval);
+  interval = setInterval( function() {
+      var timer = $('.timeout').html();
+      timer = timer.split(':');
+      var minutes = timer[0];
+      var seconds = timer[1];
+      seconds -= 1;
+      if (minutes < 0) return;
+      else if (seconds < 0 && minutes != 0) {
+          minutes -= 1;
+          seconds = 59;
+      }
+      else if (seconds < 10 && length.seconds != 2) seconds = '0' + seconds;
+
+      $('.timeout').html(minutes + ':' + seconds);
+
+      if (minutes == 0 && seconds == 0) clearInterval(interval);
+  }, 1000);
+}
+
+$('#startTimer').click(function () {
+  $('.timeout').text("3:00");
+  countdown();
+});
+
+$('#resetTimer').click(function () {
+  $('.timeout').text("3:00");
+  clearInterval(interval);
+   $('.timeout').text("3:00");
+  countdown();
+});
+
+//Board code
+
+//Block values
+function createTable() {
+var d1 = ['A', 'S', 'P', 'F', 'F', 'K'];
+var d2 = ['N', 'U', 'I', 'H', 'M', 'Qu'];
+var d3 = ['O', 'B', 'J', 'O', 'A', 'B'];
+var d4 = ['L', 'N', 'H', 'N', 'R', 'Z'];
+var d5 = ['A', 'H', 'S', 'P', 'C', 'O'];
+var d6 = ['R', 'Y', 'V', 'D', 'E', 'L'];
+var d7 = ['I', 'O', 'T', 'M', 'U', 'C'];
+var d8 = ['L', 'R', 'E', 'I', 'X', 'D'];
+var d9 = ['T', 'E', 'R', 'W', 'H', 'V'];
+var d10 = ['T', 'S', 'T', 'I', 'Y', 'D'];
+var d11 = ['W', 'N', 'G', 'E', 'E', 'H'];
+var d12 = ['E', 'R', 'T', 'T', 'Y', 'L'];
+var d13 = ['O', 'W', 'T', 'O', 'A', 'T'];
+var d14 = ['A', 'E', 'A', 'N', 'E', 'G'];
+var d15 = ['E', 'I', 'U', 'N', 'E', 'S'];
+var d16 = ['T', 'O', 'E', 'S', 'S', 'I'];
+
+//Randomize block value
+var r1 = d1[Math.floor(Math.random()*d1.length)|0];
+var r2 = d2[Math.floor(Math.random()*d2.length)|0];
+var r3 = d3[Math.floor(Math.random()*d3.length)|0];
+var r4 = d4[Math.floor(Math.random()*d4.length)|0];
+var r5 = d5[Math.floor(Math.random()*d5.length)|0];
+var r6 = d6[Math.floor(Math.random()*d6.length)|0];
+var r7 = d7[Math.floor(Math.random()*d7.length)|0];
+var r8 = d8[Math.floor(Math.random()*d8.length)|0];
+var r9 = d9[Math.floor(Math.random()*d9.length)|0];
+var r10 = d10[Math.floor(Math.random()*d10.length)|0];
+var r11 = d11[Math.floor(Math.random()*d11.length)|0];
+var r12 = d12[Math.floor(Math.random()*d12.length)|0];
+var r13 = d13[Math.floor(Math.random()*d13.length)|0];
+var r14 = d14[Math.floor(Math.random()*d14.length)|0];
+var r15 = d15[Math.floor(Math.random()*d15.length)|0];
+var r16 = d16[Math.floor(Math.random()*d16.length)|0];
+
+//find matching image
+
+//Letter images
+ var letter = [];
+	 letter[0]="images/letters/a.jpg";
+     letter[1]="images/letters/b.jpg";
+     letter[2]="images/letters/c.jpg";
+     letter[3]="images/letters/d.jpg";
+     letter[4]="images/letters/e.jpg";
+     letter[5]="images/letters/f.jpg";
+     letter[6]="images/letters/g.jpg";
+     letter[7]="images/letters/h.jpg";
+     letter[8]="images/letters/i.jpg";
+	 letter[9]="images/letters/j.jpg";
+     letter[10]="images/letters/k.jpg";
+     letter[11]="images/letters/l.jpg";
+     letter[12]="images/letters/m.jpg";
+     letter[13]="images/letters/n.jpg";
+     letter[14]="images/letters/o.jpg";
+     letter[15]="images/letters/p.jpg";
+     letter[16]="images/letters/qu.jpg";
+     letter[17]="images/letters/r.jpg";
+	 letter[18]="images/letters/s.jpg";
+     letter[19]="images/letters/t.jpg";
+     letter[20]="images/letters/u.jpg";
+     letter[21]="images/letters/v.jpg";
+	 letter[22]="images/letters/w.jpg";
+     letter[23]="images/letters/x.jpg";
+     letter[24]="images/letters/y.jpg";
+	 letter[25]="images/letters/z.jpg";
+
+	//Array number
+    var imgStr = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Qu', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+	
+
+	
+	var x1 = imgStr.indexOf(r1);
+	var x2 = imgStr.indexOf(r2);
+	var x3 = imgStr.indexOf(r3);
+	var x4 = imgStr.indexOf(r4);
+	var x5 = imgStr.indexOf(r5);
+	var x6 = imgStr.indexOf(r6);
+	var x7 = imgStr.indexOf(r7);
+	var x8 = imgStr.indexOf(r8);
+	var x9 = imgStr.indexOf(r9);
+	var x10 = imgStr.indexOf(r10);
+	var x11 = imgStr.indexOf(r11);
+	var x12 = imgStr.indexOf(r12);
+	var x13 = imgStr.indexOf(r13);
+	var x14 = imgStr.indexOf(r14);
+	var x15 = imgStr.indexOf(r15);
+	var x16 = imgStr.indexOf(r16);
+	
+	//place image
+	 document.images[1].src= letter[x1];
+	 document.images[2].src= letter[x2];
+	 document.images[3].src= letter[x3];
+	 document.images[4].src= letter[x4];
+	 document.images[5].src= letter[x5];
+	 document.images[6].src= letter[x6];
+	 document.images[7].src= letter[x7];
+	 document.images[8].src= letter[x8];
+	 document.images[9].src= letter[x9];
+	 document.images[10].src= letter[x10];
+	 document.images[11].src= letter[x11];
+	 document.images[12].src= letter[x12];
+	 document.images[13].src= letter[x13];
+	 document.images[14].src= letter[x14];
+	 document.images[15].src= letter[x15];
+	 document.images[16].src= letter[x16];
+	 
+//Randomize block position
+var parent = $("#parent");
+
+function shuffleRows(parent) {
+    var rows = parent.children();
+    for (var i = rows.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = rows[i];
+        rows.eq(i - 1).after(rows[j]);
+        rows.eq(j - 1).after(temp);
+    }
+}
+
+shuffleRows(parent);
+  
+
+  document.getElementById('game').style.display = 'block';
+ 
+} 
+</script> 
+</body>
+</html>
