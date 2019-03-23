@@ -78,15 +78,16 @@ shuffleRows(parent);
 ```
 ### BONUS
 I saw this implemented on [Weboggle.info](https://weboggle.info/) where you could rotate the board to find words you may not have seen from one side. I added a button that calls function toggleRoatate() to rotate the board by 90 degree increments.
+
 ```
 var degrees = 0;
 function toggleRotate() {
 	degrees+=90;
 	var k = document.getElementById("tbl").style.transform = 'rotate('+degrees+'deg)';
-}
-	
+}	
 ``` 
+
 ### Credits
 
 Timer was made using code modified from [stacksoverflow](https://stackoverflow.com/questions/41035992/jquery-countdown-timer-for-minutes-and-seconds)
-Boggle© is a registered trademark of Parker Brothers, a division of Hasbro, Inc. The Boggle logo and game are not owned by me.
+BoggleÂ© is a registered trademark of Parker Brothers, a division of Hasbro, Inc. The Boggle logo and game are not owned by me.
