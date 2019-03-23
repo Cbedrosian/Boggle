@@ -57,6 +57,7 @@ document.getElementById('rot').style.transform = 'rotate('+rotatev[Math.floor(Ma
 ``` 
 ### Randomly Ordering Board
 Just like before, the dice need to be placed randomly inside the table. Function shuffleRows(parent) uses a for loop to get the 16 images from the table and then randomly order them. rows.eq() is reponsible fo the placement going down the table by one each time.  
+
 ```
 function shuffleRows(parent) {
     var rows = parent.children();
@@ -73,7 +74,7 @@ function shuffleRows(parent) {
 This function is then called immediately before the board is displayed on the page.
 shuffleRows(parent);
   
-
+```
   document.getElementById('game').style.display = 'block';
 ```
 ### BONUS
