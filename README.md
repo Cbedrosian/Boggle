@@ -1,5 +1,5 @@
 # Boggle JS
-Simple boggle web app that recreates a 4x4 boggle board and timer using Javascript and Jquery.
+Simple web app that realistically recreates a 4x4 boggle board and timer using Javascript and Jquery.
 
 [demo](https://intersectingart.xyz/boggle/boggle.html)
 
