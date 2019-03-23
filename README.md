@@ -78,7 +78,7 @@ shuffleRows(parent);
   document.getElementById('game').style.display = 'block';
 ```
 ### BONUS
-I saw this implemented on [Weboggle.info](https://weboggle.info/) where you could rotate the board to find words you may not have seen from one side. I added a button that calls function toggleRoatate() to rotate the board by 90 degree increments.
+I saw this implemented on [Weboggle.info](https://weboggle.info/) where you could rotate the board to find words you may not have seen from one side. I added a button that calls function toggleRotate() to rotate the board by 90 degree increments.
 
 ```
 var degrees = 0;
