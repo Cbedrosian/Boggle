@@ -4,7 +4,7 @@ Simple web app that realistically recreates a 4x4 boggle board and timer using J
 [demo](https://intersectingart.xyz/boggle/boggle.html)
 
 ### Shaking the Dice
-To start, function createTable() is table of 16 arrays containing all six possible values for each die.
+To start, function createTable() makes 16 arrays containing all six possible values for each die.
 ```
 function createTable() {
 var d1 = ['A', 'S', 'P', 'F', 'F', 'K'];
