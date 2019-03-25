@@ -3,7 +3,7 @@
 * 3 min timer
 * Random image placement  
 * Random image rotation
-* 90 Degree increment Board rotation
+* Board rotation
 
 > [Demo](https://intersectingart.xyz/boggle/boggle.html)
 
