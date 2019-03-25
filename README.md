@@ -1,6 +1,6 @@
 # Features
-* 4 X 4 board
-* 3 min timer
+* 4 X 4 Board
+* 3 min Timer
 * Random image placement  
 * Random image rotation
 * Board rotation
